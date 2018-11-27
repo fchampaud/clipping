@@ -14,6 +14,7 @@ int vp_height = 480;
 
 std::array<int, 2> currentPt;
 std::vector<std::array<int, 2>> pts;
+std::vector<std::vector<std::array<int, 2>>> polygons;
 bool closed = false;
 
 void draw_polygon(int button, int state, int x, int y)
@@ -27,8 +28,10 @@ void draw_polygon(int button, int state, int x, int y)
         closed = false;
         pts.push_back( currentPt );
     }
-    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
+    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
         closed = true;
+        polygons.push_back(pts);
+    }
 }
 
 void mouse_move(int x, int y)
@@ -42,13 +45,21 @@ void display(void)
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    if ( !pts.empty() )
-    {
+    if (!pts.empty()) {
         glBegin(GL_LINE_STRIP);
-        for ( auto &pt : pts )
-            glVertex2f( (float)pt[0], (float)pt[1] );
+        for (auto &pt : pts)
+            glVertex2f((float) pt[0], (float) pt[1]);
         auto &endPt = closed ? pts.front() : currentPt;
-        glVertex2f( (float)endPt[0], (float)endPt[1] );
+        glVertex2f((float) endPt[0], (float) endPt[1]);
+        glEnd();
+    }
+
+    for(std::vector<std::array<int, 2>> pts : polygons) {
+        glBegin(GL_LINE_STRIP);
+        for (auto &pt : pts)
+            glVertex2f((float) pt[0], (float) pt[1]);
+        auto &endPt = pts.front();
+        glVertex2f((float) endPt[0], (float) endPt[1]);
         glEnd();
     }
 
