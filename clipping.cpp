@@ -52,18 +52,6 @@ bool Clipping::visible(std::array<int, 2> &p, std::array<int, 2> &seg_start, std
     return false;
 }
 
-/**
- * Dot product of two vectors
- * @param x1
- * @param y1
- * @param x2
- * @param y2
- * @return the dot product of the two vectors (x1, y1), (x2, y2)
- */
-float Clipping::dot(std::array<int, 2> &x1, std::array<int, 2> &y1, std::array<int, 2> &x2, std::array<int, 2> &y2) {
-    return 1.F;
-}
-
 std::array<int, 2> *
 Clipping::norm(std::array<int, 2> &x1, std::array<int, 2> &y1) {
     return nullptr;
