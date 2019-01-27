@@ -2,13 +2,13 @@
 // Created by Florian on 11/11/18.
 //
 
-#ifndef CLIPPING_CLIPPING_H
-#define CLIPPING_CLIPPING_H
+#ifndef CLIPPER_CLIPPER_H
+#define CLIPPER_CLIPPER_H
 
 #include <vector>
 #include <array>
 
-class Clipping {
+class Clipper {
 public:
     std::vector<std::array<int, 2>> clip_polygon_to_window(std::vector<std::array<int, 2>>,
                                                            std::vector<std::array<int, 2>>);
@@ -22,4 +22,4 @@ public:
     std::array<int, 2> * norm(std::array<int, 2> &x1, std::array<int, 2> &y1);
 };
 
-#endif //CLIPPING_CLIPPING_H
+#endif //CLIPPER_CLIPPER_H
