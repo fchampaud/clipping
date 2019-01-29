@@ -9,6 +9,8 @@
 #include <vector>
 #include <array>
 
+#include "GUI.h"
+
 int vp_width = 640;
 int vp_height = 480;
 
@@ -82,6 +84,8 @@ int main(int argc, char** argv)
 
     glMatrixMode( GL_PROJECTION );
     glOrtho(0.0f, (float)vp_width, 0.0f, (float)vp_height, -1.0, 1.0);
+
+    Clipping::GUI::registerGUI();
 
     glutMainLoop();
 
