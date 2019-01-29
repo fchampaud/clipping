@@ -8,8 +8,10 @@
 
 #include <vector>
 #include <array>
+#include <iostream>
 
 #include "GUI.h"
+#include "Scene.h"
 
 int vp_width = 640;
 int vp_height = 480;
@@ -42,12 +44,22 @@ void mouse_move(int x, int y)
     glutPostRedisplay();
 }
 
+std::vector<std::array<float, 3>> colors = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1},
+        {1, 1, 0}
+};
+
 void display(void)
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (!pts.empty()) {
+        glColor3f(colors[Clipping::scene.colors[0]][0],
+                  colors[Clipping::scene.colors[0]][1],
+                  colors[Clipping::scene.colors[0]][2]);
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -57,8 +69,11 @@ void display(void)
     }
 
     for(std::vector<std::array<int, 2>> pts : polygons) {
+        glColor3f(colors[Clipping::scene.colors[1]][0],
+                  colors[Clipping::scene.colors[1]][1],
+                  colors[Clipping::scene.colors[1]][2]);
         glBegin(GL_LINE_STRIP);
-        for (auto &pt : pts)
+    for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
         auto &endPt = pts.front();
         glVertex2f((float) endPt[0], (float) endPt[1]);

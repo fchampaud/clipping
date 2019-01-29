@@ -4,6 +4,7 @@
 
 #include <GL/glut.h>
 #include "GUI.h"
+#include "Scene.h"
 
 void Clipping::GUI::handleMainMenu(int entry) {
 }
@@ -46,17 +47,17 @@ void Clipping::GUI::registerGUI() {
 }
 
 void Clipping::GUI::handleWindowColorMenu(int entry) {
-
+    Clipping::scene.colors[0] = entry - 1;
 }
 
 void Clipping::GUI::handlePolygonColorMenu(int entry) {
-
+    Clipping::scene.colors[1] = entry - 1;
 }
 
 void Clipping::GUI::handleClippedColorMenu(int entry) {
-
+    Clipping::scene.colors[2] = entry - 1;
 }
 
 void Clipping::GUI::handleFillColorMenu(int entry) {
-
+    Clipping::scene.colors[3] = entry - 1;
 }
