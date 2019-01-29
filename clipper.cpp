@@ -2,7 +2,7 @@
 #include "clipper.h"
 
 std::vector<std::array<int, 2>>
-Clipper::clip_polygon_to_window(std::vector<std::array<int, 2>> pl, std::vector<std::array<int, 2>> pw) {
+Clipping::Clipper::clip_polygon_to_window(std::vector<std::array<int, 2>> pl, std::vector<std::array<int, 2>> pw) {
     std::vector<std::array<int, 2>> ps;
     std::array<int, 2> s{};
     std::array<int, 2> f{};
@@ -39,20 +39,22 @@ Clipper::clip_polygon_to_window(std::vector<std::array<int, 2>> pl, std::vector<
     return ps;
 }
 
-bool Clipper::cuts(std::array<int, 2> &s1, std::array<int, 2> &e1, std::array<int, 2> &s2, std::array<int, 2> &e2) {
+bool
+Clipping::Clipper::cuts(std::array<int, 2> &s1, std::array<int, 2> &e1, std::array<int, 2> &s2, std::array<int, 2> &e2) {
     return false;
 }
 
 std::array<int, 2> *
-Clipper::intersect(std::array<int, 2> &s1, std::array<int, 2> &e1, std::array<int, 2> &s2, std::array<int, 2> &e2) {
+Clipping::Clipper::intersect(std::array<int, 2> &s1, std::array<int, 2> &e1, std::array<int, 2> &s2, std::array<int, 2> &e2) {
     return &s1;
 }
 
-bool Clipper::visible(std::array<int, 2> &p, std::array<int, 2> &seg_start, std::array<int, 2> &seg_end) {
+bool
+Clipping::Clipper::visible(std::array<int, 2> &p, std::array<int, 2> &seg_start, std::array<int, 2> &seg_end) {
     return false;
 }
 
 std::array<int, 2> *
-Clipper::norm(std::array<int, 2> &x1, std::array<int, 2> &y1) {
+Clipping::Clipper::norm(std::array<int, 2> &x1, std::array<int, 2> &y1) {
     return nullptr;
 }
