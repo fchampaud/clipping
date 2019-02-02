@@ -13,11 +13,11 @@ namespace Clipping {
 
     private:
         static void handleMainMenu(int entry);
-        static void handleColorMenu(int entry);
         static void handleWindowColorMenu(int entry);
         static void handlePolygonColorMenu(int entry);
         static void handleClippedColorMenu(int entry);
         static void handleFillColorMenu(int entry);
+        static void handleColorMenu(int entry);
     };
 }
 
