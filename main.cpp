@@ -57,9 +57,10 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (!pts.empty()) {
-        glColor3f(colors[Clipping::scene.colors[0]][0],
-                  colors[Clipping::scene.colors[0]][1],
-                  colors[Clipping::scene.colors[0]][2]);
+        int mode = Clipping::scene.mode;
+        glColor3f(colors[Clipping::scene.colors[mode]][0],
+                  colors[Clipping::scene.colors[mode]][1],
+                  colors[Clipping::scene.colors[mode]][2]);
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -69,9 +70,9 @@ void display(void)
     }
 
     for(std::vector<std::array<int, 2>> pts : polygons) {
-        glColor3f(colors[Clipping::scene.colors[1]][0],
-                  colors[Clipping::scene.colors[1]][1],
-                  colors[Clipping::scene.colors[1]][2]);
+        glColor3f(colors[Clipping::scene.colors[0]][0],
+                  colors[Clipping::scene.colors[0]][1],
+                  colors[Clipping::scene.colors[0]][2]);
         glBegin(GL_LINE_STRIP);
     for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
