@@ -15,6 +15,7 @@ namespace Clipping {
     struct Scene {
         std::vector<Polygon> polygons;
         std::vector<Polygon> windows;
+        std::vector<Polygon> clippedPolygons;
         std::array<int, 4> colors;
         int mode;
     };
