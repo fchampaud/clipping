@@ -18,7 +18,6 @@ int vp_height = 480;
 
 std::array<int, 2> currentPt;
 std::vector<std::array<int, 2>> pts;
-std::vector<std::vector<std::array<int, 2>>> polygons;
 bool closed = false;
 
 void draw_polygon(int button, int state, int x, int y)
@@ -34,7 +33,11 @@ void draw_polygon(int button, int state, int x, int y)
     }
     if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
         closed = true;
-        polygons.push_back(pts);
+        if (Clipping::scene.mode == 0) {
+            Clipping::scene.polygons.push_back(Clipping::Polygon{pts});
+        } else if (Clipping::scene.mode == 1) {
+            Clipping::scene.windows.push_back(Clipping::Polygon{pts});
+        }
     }
 }
 
@@ -69,12 +72,26 @@ void display(void)
         glEnd();
     }
 
-    for(std::vector<std::array<int, 2>> pts : polygons) {
+    for(const Clipping::Polygon &polygon : Clipping::scene.polygons) {
+        std::vector<std::array<int, 2>> pts = polygon.points;
         glColor3f(colors[Clipping::scene.colors[0]][0],
                   colors[Clipping::scene.colors[0]][1],
                   colors[Clipping::scene.colors[0]][2]);
         glBegin(GL_LINE_STRIP);
-    for (auto &pt : pts)
+        for (auto &pt : pts)
+            glVertex2f((float) pt[0], (float) pt[1]);
+        auto &endPt = pts.front();
+        glVertex2f((float) endPt[0], (float) endPt[1]);
+        glEnd();
+    }
+
+    for(const Clipping::Polygon &window : Clipping::scene.windows) {
+        std::vector<std::array<int, 2>> pts = window.points;
+        glColor3f(colors[Clipping::scene.colors[1]][0],
+                  colors[Clipping::scene.colors[1]][1],
+                  colors[Clipping::scene.colors[1]][2]);
+        glBegin(GL_LINE_STRIP);
+        for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
         auto &endPt = pts.front();
         glVertex2f((float) endPt[0], (float) endPt[1]);
