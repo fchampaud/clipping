@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 #include "GUI.h"
 #include "Scene.h"
+#include "Business.h"
 
 void Clipping::GUI::registerGUI() {
     int polygonColorMenu = glutCreateMenu(Clipping::GUI::handlePolygonColorMenu);
@@ -47,6 +48,10 @@ void Clipping::GUI::registerGUI() {
 void Clipping::GUI::handleMainMenu(int entry) {
     if (entry == 1 or entry == 2) {
         Clipping::scene.mode = entry - 1;
+    } else if (entry == 3) { // Clipping
+        Clipping::Business::doTheClipping();
+    } else if (entry == 4) { // Filling
+        Clipping::Business::doTheFilling();
     }
 }
 
