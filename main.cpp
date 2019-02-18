@@ -12,6 +12,7 @@
 
 #include "GUI.h"
 #include "Scene.h"
+#include "Business.h"
 
 int vp_width = 640;
 int vp_height = 480;
@@ -58,6 +59,10 @@ void display(void)
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    if (Clipping::scene.doFilling) {
+        Clipping::Business::fillPolygons();
+    }
 
     if (!pts.empty()) {
         int mode = Clipping::scene.mode;

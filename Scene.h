@@ -18,6 +18,7 @@ namespace Clipping {
         std::vector<Polygon> clippedPolygons;
         std::array<int, 4> colors;
         int mode;
+        bool doFilling;
     };
 
     extern Scene scene;

@@ -11,6 +11,7 @@ namespace Clipping {
     public:
         static void doTheClipping();
         static void doTheFilling();
+        static void fillPolygons();
     };
 }
 
