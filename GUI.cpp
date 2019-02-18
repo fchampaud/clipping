@@ -41,6 +41,7 @@ void Clipping::GUI::registerGUI() {
     glutAddMenuEntry("draw clipping window", 2);
     glutAddMenuEntry("do the clipping", 3);
     glutAddMenuEntry("do the filling", 4);
+    glutAddMenuEntry("clear everything", 5);
 
     glutAttachMenu(GLUT_MIDDLE_BUTTON);
 }
@@ -52,6 +53,10 @@ void Clipping::GUI::handleMainMenu(int entry) {
         Clipping::Business::doTheClipping();
     } else if (entry == 4) { // Filling
         Clipping::Business::doTheFilling();
+    } else if (entry == 5) { // Clear
+        Clipping::scene.polygons.clear();
+        Clipping::scene.clippedPolygons.clear();
+        Clipping::scene.windows.clear();
     }
 }
 
