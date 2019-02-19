@@ -58,22 +58,27 @@ void Clipping::GUI::handleMainMenu(int entry) {
         Clipping::scene.clippedPolygons.clear();
         Clipping::scene.windows.clear();
     }
+    glutPostRedisplay();
 }
 
 void Clipping::GUI::handlePolygonColorMenu(int entry) {
     Clipping::scene.colors[0] = entry - 1;
+    glutPostRedisplay();
 }
 
 void Clipping::GUI::handleWindowColorMenu(int entry) {
     Clipping::scene.colors[1] = entry - 1;
+    glutPostRedisplay();
 }
 
 void Clipping::GUI::handleClippedColorMenu(int entry) {
     Clipping::scene.colors[2] = entry - 1;
+    glutPostRedisplay();
 }
 
 void Clipping::GUI::handleFillColorMenu(int entry) {
     Clipping::scene.colors[3] = entry - 1;
+    glutPostRedisplay();
 }
 
 void Clipping::GUI::handleColorMenu(int entry) {

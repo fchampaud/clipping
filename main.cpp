@@ -40,6 +40,7 @@ void draw_polygon(int button, int state, int x, int y)
             Clipping::scene.windows.push_back(Clipping::Polygon{pts});
         }
         pts.clear();
+        glutPostRedisplay();
     }
 }
 
