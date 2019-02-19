@@ -32,7 +32,7 @@ void draw_polygon(int button, int state, int x, int y)
         closed = false;
         pts.push_back( currentPt );
     }
-    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN ) {
+    if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN && pts.size() >= 3) {
         closed = true;
         if (Clipping::scene.mode == 0) {
             Clipping::scene.polygons.push_back(Clipping::Polygon{pts});
