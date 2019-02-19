@@ -23,8 +23,17 @@ void Clipping::Business::doTheFilling() {
 }
 
 void Clipping::Business::fillPolygons() {
+    static const std::vector<std::array<float, 3>> colors = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1},
+            {1, 1, 0}
+    };
+
     glBegin(GL_POINTS);
-    glColor3f(1.F, 0.F, 0.F);
+    glColor3f(colors[Clipping::scene.colors[3]][0],
+              colors[Clipping::scene.colors[3]][1],
+              colors[Clipping::scene.colors[3]][2]);
     for (auto &polygon : scene.polygons) {
         for (int i = polygon.points[0][0]; i < polygon.points[1][0]; ++i) {
             for (int j = polygon.points[0][1]; j < polygon.points[1][1]; ++j) {
