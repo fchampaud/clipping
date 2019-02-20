@@ -19,6 +19,7 @@ namespace Clipping {
         std::array<int, 4> colors;
         int mode;
         bool doFilling;
+        std::vector<std::array<int, 2>> fillStartPoints;
     };
 
     extern Scene scene;

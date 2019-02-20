@@ -32,7 +32,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             Xd = Xd+1;
             //CPd = couleur de (Xd,y)
             CPd = getPixelColor(Xd,y);
-            std::cout<<"YAMERO CPd: "<<Xd<<"/"<<y<<std::endl;
+            //std::cout<<"YAMERO CPd: "<<Xd<<"/"<<y<<std::endl;
         }
 
         Xd = Xd-1;
@@ -42,13 +42,13 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             Xg = Xg-1;
             //CPg = couleur de (Xg,y)
             CPg = getPixelColor(Xg,y);
-            std::cout<<"YAMERO CPg: "<<Xg<<"/"<<y<<std::endl;
+            //std::cout<<"YAMERO CPg: "<<Xg<<"/"<<y<<std::endl;
         }
 
         Xg = Xg+1;
         //On affiche la ligne (Xg,y) (Xd,y)
         drawLine(Xg,y,Xd,CR);
-        std::cout<<"Drawn from "<<Xg<<"/"<<y<<" and "<<Xd<<"/"<<y<<std::endl;
+        std::cout<<"Drawn from "<<Xg<<";"<<y<<" and "<<Xd<<";"<<y<<std::endl;
         /*
         x = Xd;
         //Cp = Couleur (x,y+1)
@@ -99,7 +99,7 @@ std::array<int,3> Clipping::Filler::getPixelColor(int x,int y){
 }
 
 void Clipping::Filler::drawLine(int x1,int y1,int x2 ,std::array<int,3> C){
-    glBegin(GL_LINE);
+    glBegin(GL_POINTS);
     glColor3f(C[0],C[1],C[2]);
     for (int i = x1; i < x2; ++i) {
         glVertex2f(i, y1);

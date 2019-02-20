@@ -32,7 +32,8 @@ void draw_polygon(int button, int state, int x, int y)
             pts.clear(); // restart if last action was close
         closed = false;
         if (Clipping::scene.doFilling) {
-            Clipping::Filler::RemplissageLigne(x,y,{255,0,0},{255,0,0});
+            std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
+            Clipping::scene.fillStartPoints.push_back({x, y});
         }
         else {
             pts.push_back(currentPt);
@@ -69,8 +70,11 @@ void display(void)
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    if (Clipping::scene.doFilling) {
-        //Clipping::Business::fillPolygons();
+    for (const auto &point : Clipping::scene.fillStartPoints) {
+        int x = point[0];
+        int y = point[1];
+        std::cout << "Filling starting at " << x << ";" << y << std::endl;
+        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, {255, 0, 0});
     }
 
     if (!pts.empty()) {
