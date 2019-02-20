@@ -13,6 +13,7 @@
 #include "GUI.h"
 #include "Scene.h"
 #include "Business.h"
+#include "Filler.h"
 
 int vp_width = 640;
 int vp_height = 480;
@@ -30,7 +31,12 @@ void draw_polygon(int button, int state, int x, int y)
         if ( closed )
             pts.clear(); // restart if last action was close
         closed = false;
-        pts.push_back( currentPt );
+        if (Clipping::scene.doFilling) {
+            Clipping::Filler::RemplissageLigne(x,y,{255,0,0},{255,0,0});
+        }
+        else {
+            pts.push_back(currentPt);
+        }
     }
     if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN && pts.size() >= 3) {
         closed = true;
@@ -43,6 +49,7 @@ void draw_polygon(int button, int state, int x, int y)
         glutPostRedisplay();
     }
 }
+
 
 void mouse_move(int x, int y)
 {
@@ -63,7 +70,7 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (Clipping::scene.doFilling) {
-        Clipping::Business::fillPolygons();
+        //Clipping::Business::fillPolygons();
     }
 
     if (!pts.empty()) {

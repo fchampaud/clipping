@@ -17,6 +17,6 @@ endif()
 #endforeach()
 
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
-set(SOURCE_FILES main.cpp clipper.h clipper.cpp GUI.cpp GUI.h Scene.h Polygon.h Scene.cpp Business.cpp Business.h)
+set(SOURCE_FILES main.cpp clipper.h clipper.cpp GUI.cpp GUI.h Scene.h Polygon.h Scene.cpp Business.cpp Business.h Filler.cpp Filler.h)
 add_executable(test.out ${SOURCE_FILES})
 target_link_libraries(test.out ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
