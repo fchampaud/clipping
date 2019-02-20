@@ -33,7 +33,7 @@ void draw_polygon(int button, int state, int x, int y)
         closed = false;
         if (Clipping::scene.doFilling) {
             std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
-            Clipping::scene.fillStartPoints.push_back({x, y});
+            Clipping::scene.fillStartPoints.push_back({x, vp_height - y});
         }
         else {
             pts.push_back(currentPt);
@@ -59,10 +59,10 @@ void mouse_move(int x, int y)
 }
 
 std::vector<std::array<float, 3>> colors = {
-        {1, 0, 0},
-        {0, 1, 0},
-        {0, 0, 1},
-        {1, 1, 0}
+        {255, 0, 0},
+        {0, 255, 0},
+        {0, 0, 255},
+        {255, 255, 0}
 };
 
 void display(void)
@@ -82,6 +82,7 @@ void display(void)
         glColor3f(colors[Clipping::scene.colors[mode]][0],
                   colors[Clipping::scene.colors[mode]][1],
                   colors[Clipping::scene.colors[mode]][2]);
+
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -95,6 +96,7 @@ void display(void)
         glColor3f(colors[Clipping::scene.colors[0]][0],
                   colors[Clipping::scene.colors[0]][1],
                   colors[Clipping::scene.colors[0]][2]);
+        std::cout<<"Color"<<colors[Clipping::scene.colors[1]][0]<<"/"<<colors[Clipping::scene.colors[1]][1]<<"/"<<colors[Clipping::scene.colors[1]][2]<<std::endl;
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);

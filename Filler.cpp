@@ -26,13 +26,14 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
         Pile.pop();
         // CP = couleur(temp2)
         CP = getPixelColor(temp2[0],temp2[1]);
+        std::cout<<"CC :"<<CC[0]<<","<<CC[1]<<","<<CC[2]<<std::endl;
         Xd = x+1;
         CPd = CP;
-        while(CPd != CC && Xd<639){
+        while(CPd != CC && Xd<640){
             Xd = Xd+1;
             //CPd = couleur de (Xd,y)
             CPd = getPixelColor(Xd,y);
-            //std::cout<<"YAMERO CPd: "<<Xd<<"/"<<y<<std::endl;
+            std::cout<<"Points Cpd: "<<Xd<<"/"<<y<<std::endl;
         }
 
         Xd = Xd-1;
@@ -42,7 +43,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             Xg = Xg-1;
             //CPg = couleur de (Xg,y)
             CPg = getPixelColor(Xg,y);
-            //std::cout<<"YAMERO CPg: "<<Xg<<"/"<<y<<std::endl;
+            std::cout<<"Points CPg: "<<Xg<<"/"<<y<<std::endl;
         }
 
         Xg = Xg+1;
@@ -93,8 +94,14 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
 }
 
 std::array<int,3> Clipping::Filler::getPixelColor(int x,int y){
-    unsigned char pixel[4];
-    glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, pixel);
+
+    int pixel[4];
+    glReadPixels(x, y, 1, 1, GL_RGB, GL_INT, pixel);
+    std::cout << "y: " << y << std::endl;
+    std::cout << "R: " << (int)pixel[0] << std::endl;
+    std::cout << "G: " << (int)pixel[1] << std::endl;
+    std::cout << "B: " << (int)pixel[2] << std::endl;
+    std::cout << std::endl;
     return {(int)pixel[0],(int)pixel[1],(int)pixel[2]};
 }
 
