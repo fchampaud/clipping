@@ -55,27 +55,22 @@ void draw_polygon(int button, int state, int x, int y)
 void mouse_move(int x, int y)
 {
     currentPt = std::array<int, 2>{x, vp_height-y};
+    auto color = Clipping::Filler::getPixelColor(x, vp_height - y);
+    std::cout<<"Hover color: "<< color[0] << ';' << color[1] << ';' << color[2] << std::endl;
     glutPostRedisplay();
 }
 
 std::vector<std::array<float, 3>> colors = {
-        {255, 0, 0},
-        {0, 255, 0},
-        {0, 0, 255},
-        {255, 255, 0}
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1},
+        {1, 1, 0}
 };
 
 void display(void)
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    for (const auto &point : Clipping::scene.fillStartPoints) {
-        int x = point[0];
-        int y = point[1];
-        std::cout << "Filling starting at " << x << ";" << y << std::endl;
-        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, {255, 0, 0});
-    }
 
     if (!pts.empty()) {
         int mode = Clipping::scene.mode;
@@ -96,13 +91,20 @@ void display(void)
         glColor3f(colors[Clipping::scene.colors[0]][0],
                   colors[Clipping::scene.colors[0]][1],
                   colors[Clipping::scene.colors[0]][2]);
-        std::cout<<"Color"<<colors[Clipping::scene.colors[1]][0]<<"/"<<colors[Clipping::scene.colors[1]][1]<<"/"<<colors[Clipping::scene.colors[1]][2]<<std::endl;
+        //std::cout<<"Color"<<colors[Clipping::scene.colors[1]][0]<<"/"<<colors[Clipping::scene.colors[1]][1]<<"/"<<colors[Clipping::scene.colors[1]][2]<<std::endl;
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
         auto &endPt = pts.front();
         glVertex2f((float) endPt[0], (float) endPt[1]);
         glEnd();
+    }
+
+    for (const auto &point : Clipping::scene.fillStartPoints) {
+        int x = point[0];
+        int y = point[1];
+        std::cout << "Filling starting at " << x << ";" << y << std::endl;
+        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, {1, 0, 0});
     }
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {

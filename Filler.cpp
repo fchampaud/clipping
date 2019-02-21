@@ -18,7 +18,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
     std::array<int,3> CP  = {0,0,0};
     std::array<int,3> CPd = {0,0,0};
     std::array<int,3> CPg = {0,0,0};
-    std::cout<<"Start "<<x<<"/"<<y<<std::endl;
+    std::cout<<"Start "<<x<<";"<<y<<std::endl;
     int Xd,Xg;
     while (!Pile.empty()){
         std::cout<<"La pile est pleine"<<std::endl;
@@ -33,7 +33,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             Xd = Xd+1;
             //CPd = couleur de (Xd,y)
             CPd = getPixelColor(Xd,y);
-            std::cout<<"Points Cpd: "<<Xd<<"/"<<y<<std::endl;
+            std::cout<<"Points Cpd: "<<Xd<<";"<<y<<std::endl;
         }
 
         Xd = Xd-1;
@@ -43,7 +43,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             Xg = Xg-1;
             //CPg = couleur de (Xg,y)
             CPg = getPixelColor(Xg,y);
-            std::cout<<"Points CPg: "<<Xg<<"/"<<y<<std::endl;
+            std::cout<<"Points CPg: "<<Xg<<";"<<y<<std::endl;
         }
 
         Xg = Xg+1;
@@ -95,13 +95,13 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
 
 std::array<int,3> Clipping::Filler::getPixelColor(int x,int y){
 
-    int pixel[4];
-    glReadPixels(x, y, 1, 1, GL_RGB, GL_INT, pixel);
-    std::cout << "y: " << y << std::endl;
-    std::cout << "R: " << (int)pixel[0] << std::endl;
-    std::cout << "G: " << (int)pixel[1] << std::endl;
-    std::cout << "B: " << (int)pixel[2] << std::endl;
-    std::cout << std::endl;
+    unsigned char pixel[4];
+    glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, pixel);
+    std::cout << "x: " << x << "y: " << y;
+    std::cout << " R: " << (int)pixel[0];
+    std::cout << " G: " << (int)pixel[1];
+    std::cout << " B: " << (int)pixel[2] << std::endl;
+    //std::cout << std::endl;
     return {(int)pixel[0],(int)pixel[1],(int)pixel[2]};
 }
 
