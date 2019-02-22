@@ -17,6 +17,7 @@ namespace Clipping {
         std::vector<Polygon> windows;
         std::vector<Polygon> clippedPolygons;
         std::array<int, 4> colors;
+        std::vector<std::array<float, 3>> colorPalette;
         int mode;
         bool doFilling;
     };

@@ -50,13 +50,6 @@ void mouse_move(int x, int y)
     glutPostRedisplay();
 }
 
-std::vector<std::array<float, 3>> colors = {
-        {1, 0, 0},
-        {0, 1, 0},
-        {0, 0, 1},
-        {1, 1, 0}
-};
-
 void display(void)
 {
     glClearColor(0, 0, 0, 0);
@@ -68,9 +61,9 @@ void display(void)
 
     if (!pts.empty()) {
         int mode = Clipping::scene.mode;
-        glColor3f(colors[Clipping::scene.colors[mode]][0],
-                  colors[Clipping::scene.colors[mode]][1],
-                  colors[Clipping::scene.colors[mode]][2]);
+        glColor3f(Clipping::scene.colorPalette[Clipping::scene.colors[mode]][0],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[mode]][1],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[mode]][2]);
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -81,9 +74,9 @@ void display(void)
 
     for(const Clipping::Polygon &polygon : Clipping::scene.polygons) {
         std::vector<std::array<int, 2>> pts = polygon.points;
-        glColor3f(colors[Clipping::scene.colors[0]][0],
-                  colors[Clipping::scene.colors[0]][1],
-                  colors[Clipping::scene.colors[0]][2]);
+        glColor3f(Clipping::scene.colorPalette[Clipping::scene.colors[0]][0],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[0]][1],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[0]][2]);
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -94,9 +87,9 @@ void display(void)
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {
         std::vector<std::array<int, 2>> pts = window.points;
-        glColor3f(colors[Clipping::scene.colors[1]][0],
-                  colors[Clipping::scene.colors[1]][1],
-                  colors[Clipping::scene.colors[1]][2]);
+        glColor3f(Clipping::scene.colorPalette[Clipping::scene.colors[1]][0],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[1]][1],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[1]][2]);
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
@@ -111,6 +104,13 @@ void display(void)
 
 int main(int argc, char** argv)
 {
+    Clipping::scene.colorPalette = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1},
+            {1, 1, 0}
+    };
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
