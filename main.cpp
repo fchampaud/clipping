@@ -14,16 +14,13 @@
 #include "Scene.h"
 #include "Business.h"
 
-int vp_width = 640;
-int vp_height = 480;
-
 std::array<int, 2> currentPt;
 std::vector<std::array<int, 2>> pts;
 bool closed = false;
 
 void draw_polygon(int button, int state, int x, int y)
 {
-    currentPt = std::array<int, 2>{x, vp_height-y};
+    currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
@@ -46,7 +43,7 @@ void draw_polygon(int button, int state, int x, int y)
 
 void mouse_move(int x, int y)
 {
-    currentPt = std::array<int, 2>{x, vp_height-y};
+    currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
     glutPostRedisplay();
 }
 
@@ -123,7 +120,8 @@ int main(int argc, char** argv)
     glutMouseFunc(draw_polygon);
 
     glMatrixMode( GL_PROJECTION );
-    glOrtho(0.0f, (float)vp_width, 0.0f, (float)vp_height, -1.0, 1.0);
+    glOrtho(0.0f, (float)Clipping::vp_width, 0.0f, (float)Clipping::vp_height,
+            -1.0, 1.0);
 
     Clipping::GUI::registerGUI();
 

@@ -23,6 +23,8 @@ namespace Clipping {
     };
 
     extern Scene scene;
+    extern int vp_width;
+    extern int vp_height;
 }
 
 
