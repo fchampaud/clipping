@@ -6,6 +6,6 @@
 
 namespace Clipping {
     Scene scene;
-    int vp_width {640};
-    int vp_height {480};
+    const int vp_width {640};
+    const int vp_height {480};
 }
