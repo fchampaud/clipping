@@ -35,7 +35,7 @@ void Clipping::GUI::registerGUI() {
     glutAddSubMenu("clipped polygon color", clippedColorMenu);
     glutAddSubMenu("fill color", fillColorMenu);
 
-    int menu = glutCreateMenu(Clipping::GUI::handleMainMenu);
+    glutCreateMenu(Clipping::GUI::handleMainMenu);
     glutAddSubMenu("colors", colorMenu);
     glutAddMenuEntry("draw polygon to clip", 1);
     glutAddMenuEntry("draw clipping window", 2);

@@ -50,7 +50,7 @@ void mouse_move(int x, int y)
     glutPostRedisplay();
 }
 
-void display(void)
+void display()
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
