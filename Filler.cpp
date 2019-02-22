@@ -13,7 +13,7 @@
 
 void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std::array<int,3> CR){
     std::stack<std::vector<int>> Pile;
-    std::vector<int> temp (x,y);
+    std::vector<int> temp {x,y};
     Pile.push(temp);
     std::array<int,3> CP  = {0,0,0};
     std::array<int,3> CPd = {0,0,0};
@@ -25,7 +25,9 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
         std::vector<int> temp2 (Pile.top());
         Pile.pop();
         // CP = couleur(temp2)
-        CP = getPixelColor(temp2[0],temp2[1]);
+        x= temp2[0];
+        y= temp2[1];
+        CP = getPixelColor(x,y);
         std::cout<<"CC :"<<CC[0]<<","<<CC[1]<<","<<CC[2]<<std::endl;
         Xd = x+1;
         CPd = CP;
@@ -35,8 +37,6 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             CPd = getPixelColor(Xd,y);
             std::cout<<"Points Cpd: "<<Xd<<";"<<y<<std::endl;
         }
-
-        Xd = Xd-1;
         Xg = x-1;
         CPg= CP;
         while(CPg != CC && Xg>0){
@@ -45,12 +45,18 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
             CPg = getPixelColor(Xg,y);
             std::cout<<"Points CPg: "<<Xg<<";"<<y<<std::endl;
         }
-
+        if(Xd>=639){
+            break;
+        }
+        if(Xg<=0){
+            break;
+        }
         Xg = Xg+1;
+        Xd = Xd-1;
         //On affiche la ligne (Xg,y) (Xd,y)
         drawLine(Xg,y,Xd,CR);
         std::cout<<"Drawn from "<<Xg<<";"<<y<<" and "<<Xd<<";"<<y<<std::endl;
-        /*
+
         x = Xd;
         //Cp = Couleur (x,y+1)
         CP = getPixelColor(x,y+1);
@@ -62,7 +68,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
                 CP = getPixelColor(x,y+1);
             }
             if(x>Xg && CP!=CC && CP!=CR){
-                std::vector<int> temp3 (x,y+1);
+                std::vector<int> temp3 {x,y+1};
                 Pile.push(temp3);
             }
             while (CP!=CC && x>=Xg){
@@ -80,16 +86,16 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
                 CP = getPixelColor(x,y-1);
             }
             if(x>Xg && CP!=CC && CP!=CR){
-                std::vector<int> temp3 (x,y-1);
+                std::vector<int> temp3 {x,y-1};
                 Pile.push(temp3);
             }
             while (CP!=CC && x>=Xg){
                 x=x-1;
                 //CP = couleur de (x,y-1)
-                CP = getPixelColor(x,y+1);
+                CP = getPixelColor(x,y-1);
             }
         }
-         */
+
     }
 }
 

@@ -57,7 +57,9 @@ void mouse_move(int x, int y)
     currentPt = std::array<int, 2>{x, vp_height-y};
     auto color = Clipping::Filler::getPixelColor(x, vp_height - y);
     std::cout<<"Hover color: "<< color[0] << ';' << color[1] << ';' << color[2] << std::endl;
-    glutPostRedisplay();
+    if (!Clipping::scene.doFilling) {
+        glutPostRedisplay();
+    }
 }
 
 std::vector<std::array<float, 3>> colors = {
