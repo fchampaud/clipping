@@ -111,8 +111,8 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
-    glutInitWindowSize(640, 480);
-    glutInitWindowPosition((1920 - 640) / 2, 0);
+    glutInitWindowSize(Clipping::vp_width, Clipping::vp_height);
+    glutInitWindowPosition((1920 - Clipping::vp_width) / 2, 0);
     glutCreateWindow("OpenGL clipping");
 
     glutDisplayFunc(display);
