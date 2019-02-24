@@ -30,15 +30,19 @@ void Clipping::Display::render() {
         displayPolygon(polygon, 0);
     }
 
+    std::array<float, 3> polygonColor = Clipping::scene.colorPalette[Clipping::scene.colors[0]];
+    std::array<int, 3> intPolygonColor = {static_cast<int>(polygonColor[0] * 255),
+                                       static_cast<int>(polygonColor[1] * 255),
+                                       static_cast<int>(polygonColor[2] * 255)};
+    std::array<float, 3> fillColor = Clipping::scene.colorPalette[Clipping::scene.colors[3]];
+    std::array<int, 3> intFillColor = {static_cast<int>(fillColor[0] * 255),
+                                       static_cast<int>(fillColor[1] * 255),
+                                       static_cast<int>(fillColor[2] * 255)};
     for (const auto &point : Clipping::scene.fillStartPoints) {
         int x = point[0];
         int y = point[1];
         std::cout << "Filling starting at " << x << ";" << y << std::endl;
-        std::array<float, 3> fillColor = Clipping::scene.colorPalette[Clipping::scene.colors[3]];
-        std::array<int, 3> intFillColor = {static_cast<int>(fillColor[0] * 255),
-                                           static_cast<int>(fillColor[1] * 255),
-                                           static_cast<int>(fillColor[2] * 255)};
-        Clipping::Filler::fill(x, y, {255, 0, 0}, intFillColor);
+        Clipping::Filler::fill(x, y, intPolygonColor, intFillColor);
     }
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {
