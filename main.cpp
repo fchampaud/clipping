@@ -95,6 +95,19 @@ void display()
         glEnd();
     }
 
+    for(const Clipping::Polygon &polygon : Clipping::scene.clippedPolygons) {
+        std::vector<std::array<int, 2>> pts = polygon.points;
+        glColor3f(Clipping::scene.colorPalette[Clipping::scene.colors[2]][0],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[2]][1],
+                  Clipping::scene.colorPalette[Clipping::scene.colors[2]][2]);
+        glBegin(GL_LINE_STRIP);
+        for (auto &pt : pts)
+            glVertex2f((float) pt[0], (float) pt[1]);
+        auto &endPt = pts.front();
+        glVertex2f((float) endPt[0], (float) endPt[1]);
+        glEnd();
+    }
+
     //glFlush();
     glutSwapBuffers();
 }
