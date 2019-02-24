@@ -33,6 +33,8 @@ points have been placed.
 
 Further possibilities are available via the menu.
 
+All polygons must be declared counterclockwise for all functions to work.
+
 ## The Menu
 
 The menu entries are as follows:
