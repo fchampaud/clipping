@@ -2,11 +2,12 @@
 // Created by florian on 17/02/19.
 //
 
+#include "clipper.h"
 #include <GL/gl.h>
 #include <iostream>
 #include "Business.h"
 #include "Scene.h"
-#include "clipper.h"
+
 
 void Clipping::Business::doTheClipping() {
     scene.clippedPolygons = scene.polygons;

@@ -20,6 +20,7 @@ namespace Clipping {
         std::vector<std::array<float, 3>> colorPalette;
         int mode;
         bool doFilling;
+        std::vector<std::array<int, 2>> fillStartPoints;
     };
 
     extern Scene scene;

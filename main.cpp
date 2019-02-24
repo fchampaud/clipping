@@ -13,6 +13,7 @@
 #include "GUI.h"
 #include "Scene.h"
 #include "Business.h"
+#include "Filler.h"
 
 std::array<int, 2> currentPt;
 std::vector<std::array<int, 2>> pts;
@@ -27,7 +28,13 @@ void draw_polygon(int button, int state, int x, int y)
         if ( closed )
             pts.clear(); // restart if last action was close
         closed = false;
-        pts.push_back( currentPt );
+        if (Clipping::scene.doFilling) {
+            std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
+            Clipping::scene.fillStartPoints.push_back({x, vp_height - y});
+        }
+        else {
+            pts.push_back(currentPt);
+        }
     }
     if ( button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN && pts.size() >= 3) {
         closed = true;
@@ -44,17 +51,16 @@ void draw_polygon(int button, int state, int x, int y)
 void mouse_move(int x, int y)
 {
     currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
-    glutPostRedisplay();
+    auto color = Clipping::Filler::getPixelColor(x, Clipping::vp_height - y);
+    if (!Clipping::scene.doFilling) {
+        glutPostRedisplay();
+    }
 }
 
 void display()
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    if (Clipping::scene.doFilling) {
-        Clipping::Business::fillPolygons();
-    }
 
     if (!pts.empty()) {
         int mode = Clipping::scene.mode;
@@ -80,6 +86,13 @@ void display()
         auto &endPt = pts.front();
         glVertex2f((float) endPt[0], (float) endPt[1]);
         glEnd();
+    }
+
+    for (const auto &point : Clipping::scene.fillStartPoints) {
+        int x = point[0];
+        int y = point[1];
+        std::cout << "Filling starting at " << x << ";" << y << std::endl;
+        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, {1, 0, 0});
     }
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {
