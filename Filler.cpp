@@ -27,7 +27,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
         Xd = x+1;
         CP = getPixelColor(Xd,y);
         CPd = CP;
-        while(CPd != CC && Xd<640){
+        while(CPd != CC && Xd<Clipping::vp_width){
             Xd = Xd+1;
             CPd = getPixelColor(Xd,y);
         }
@@ -50,7 +50,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
                 x=x-1;
                 CP = getPixelColor(x,y+1);
             }
-            if(x>Xg && CP!=CC && CP!=CR){
+            if(x>Xg && CP!=CC && CP!=CR && y+1 < Clipping::vp_height){
                 std::vector<int> temp3 {x,y+1};
                 Pile.push(temp3);
             }
@@ -66,7 +66,7 @@ void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std
                 x=x-1;
                 CP = getPixelColor(x,y-1);
             }
-            if(x>Xg && CP!=CC && CP!=CR){
+            if(x>Xg && CP!=CC && CP!=CR && y > 0){
                 std::vector<int> temp3 {x,y-1};
                 Pile.push(temp3);
             }
