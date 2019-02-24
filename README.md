@@ -31,6 +31,8 @@ Middle mouse button opens the menu. By default, left mouse button draws a
 polygon point by point. Right mouse button closes the polygon if at least 3
 points have been placed.
 
+Further possibilities are available via the menu.
+
 ## The Menu
 
 The menu entries are as follows:
