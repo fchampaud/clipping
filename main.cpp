@@ -56,7 +56,6 @@ void mouse_move(int x, int y)
 {
     currentPt = std::array<int, 2>{x, vp_height-y};
     auto color = Clipping::Filler::getPixelColor(x, vp_height - y);
-    std::cout<<"Hover color: "<< color[0] << ';' << color[1] << ';' << color[2] << std::endl;
     if (!Clipping::scene.doFilling) {
         glutPostRedisplay();
     }
@@ -93,7 +92,6 @@ void display(void)
         glColor3f(colors[Clipping::scene.colors[0]][0],
                   colors[Clipping::scene.colors[0]][1],
                   colors[Clipping::scene.colors[0]][2]);
-        //std::cout<<"Color"<<colors[Clipping::scene.colors[1]][0]<<"/"<<colors[Clipping::scene.colors[1]][1]<<"/"<<colors[Clipping::scene.colors[1]][2]<<std::endl;
         glBegin(GL_LINE_STRIP);
         for (auto &pt : pts)
             glVertex2f((float) pt[0], (float) pt[1]);
