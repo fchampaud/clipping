@@ -40,7 +40,7 @@ void Clipping::GUI::registerGUI() {
     glutAddMenuEntry("draw polygon to clip", 1);
     glutAddMenuEntry("draw clipping window", 2);
     glutAddMenuEntry("add fill start point", 3);
-    glutAddMenuEntry("do the clipping", 4);
+    glutAddMenuEntry("clip all polygons", 4);
     glutAddMenuEntry("clear everything", 5);
 
     glutAttachMenu(GLUT_MIDDLE_BUTTON);
