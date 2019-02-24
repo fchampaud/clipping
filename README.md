@@ -12,16 +12,16 @@ points have been placed.
 
 The menu entries are as follows:
 
-* colors: choose the colors for polygons, clipping windows, clipped polygons and
+* _colors_: choose the colors for polygons, clipping windows, clipped polygons and
   filling
-* draw polygon to clip: enable polygon drawing mode. In this mode, left clicking
+* _draw polygon to clip_: enable polygon drawing mode. In this mode, left clicking
   places a point and right clicking closes the polygon. This is the default mode
-* draw clipping window: enable clipping window drawing mode. Works the same as
+* _draw clipping window_: enable clipping window drawing mode. Works the same as
   polygon drawing mode, except it will draw clipping windows
-* add fill start point: enable fill mode. In this mode, left clicking places a
+* _add fill start point_: enable fill mode. In this mode, left clicking places a
   fill start point, from which filling will be done. Same as a bucket fill
-* clip all polygons: clips all the polygons on the scene using all the windows
+* _clip all polygons_: clips all the polygons on the scene using all the windows
   on the scene, creating a new, clipped polygon for each existing polygon
-* clear everything: clears the scene of all polygons, clipping windows and
+* _clear everything_: clears the scene of all polygons, clipping windows and
   clipped polygons. Also empties the drawing points from polygon drawing mode or
   clipping window drawing mode
