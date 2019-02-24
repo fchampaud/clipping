@@ -2,6 +2,15 @@
 
 ## Compiling
 
+This part supposes that you have a working C++ compilation environment.
+
+In all cases, you need the following libraries to compile the project:
+* GLUT or FreeGLUT (the latter is maintained and modernised)
+* GLEW
+
+You can either install them system-wide or put them somewhere for CMake and the
+compiler to find.
+
 ### With CMake
 
 * create a build output directory and place yourself in it
