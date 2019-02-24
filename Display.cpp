@@ -34,7 +34,11 @@ void Clipping::Display::render() {
         int x = point[0];
         int y = point[1];
         std::cout << "Filling starting at " << x << ";" << y << std::endl;
-        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, {1, 0, 0});
+        std::array<float, 3> fillColor = Clipping::scene.colorPalette[Clipping::scene.colors[3]];
+        std::array<int, 3> intFillColor = {static_cast<int>(fillColor[0] * 255),
+                                           static_cast<int>(fillColor[1] * 255),
+                                           static_cast<int>(fillColor[2] * 255)};
+        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, intFillColor);
     }
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {
