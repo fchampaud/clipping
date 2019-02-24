@@ -28,9 +28,9 @@ void draw_polygon(int button, int state, int x, int y)
         if ( closed )
             pts.clear(); // restart if last action was close
         closed = false;
-        if (Clipping::scene.doFilling) {
+        if (Clipping::scene.mode == 2) {
             std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
-            Clipping::scene.fillStartPoints.push_back({x, vp_height - y});
+            Clipping::scene.fillStartPoints.push_back({x, Clipping::vp_height - y});
         }
         else {
             pts.push_back(currentPt);
@@ -52,7 +52,7 @@ void mouse_move(int x, int y)
 {
     currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
     auto color = Clipping::Filler::getPixelColor(x, Clipping::vp_height - y);
-    if (!Clipping::scene.doFilling) {
+    if (Clipping::scene.mode != 3) {
         glutPostRedisplay();
     }
 }

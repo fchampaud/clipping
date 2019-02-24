@@ -20,7 +20,6 @@ void Clipping::Business::doTheClipping() {
 }
 
 void Clipping::Business::doTheFilling() {
-    Clipping::scene.doFilling = !Clipping::scene.doFilling;
 }
 
 void Clipping::Business::fillPolygons() {

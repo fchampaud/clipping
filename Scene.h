@@ -19,7 +19,6 @@ namespace Clipping {
         std::array<int, 4> colors;
         std::vector<std::array<float, 3>> colorPalette;
         int mode;
-        bool doFilling;
         std::vector<std::array<int, 2>> fillStartPoints;
     };
 
