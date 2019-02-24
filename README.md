@@ -1,6 +1,20 @@
 # Clipping / filling 2D project
 
-## Usage
+## Compiling
+
+### With CMake
+
+* create a build output directory and place yourself in it
+* run `cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" <dir>`,
+  where `<dir>` is the path to the project's working directory on your machine
+* run `cmake --build . --target all -- -j 2`
+
+### With your favorite IDE
+
+Alternatively, a properly configured IDE that is compatible with
+`CMakeLists.txt` files such as CLion should be able to easily build the project.
+
+## Basic Usage
 
 Run the program. An empty, black window will appear.
 
@@ -8,7 +22,7 @@ Middle mouse button opens the menu. By default, left mouse button draws a
 polygon point by point. Right mouse button closes the polygon if at least 3
 points have been placed.
 
-## The menu
+## The Menu
 
 The menu entries are as follows:
 
