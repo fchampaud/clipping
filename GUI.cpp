@@ -55,6 +55,7 @@ void Clipping::GUI::handleMainMenu(int entry) {
         Clipping::scene.polygons.clear();
         Clipping::scene.clippedPolygons.clear();
         Clipping::scene.windows.clear();
+        Clipping::scene.fillStartPoints.clear();
     }
     glutPostRedisplay();
 }
