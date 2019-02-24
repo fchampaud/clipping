@@ -18,7 +18,7 @@
 namespace Clipping {
     class Filler {
     public:;
-        static void RemplissageLigne(int x, int y, std::array<int,3> CC,  std::array<int,3> CR);
+        static void fill(int x, int y, std::array<int, 3> CC, std::array<int, 3> CR);
         static std::array<int,3> getPixelColor(int x, int y);
         static void drawLine(int x1, int y1, int x2 , std::array<int,3> C);
     };

@@ -11,7 +11,7 @@
 #include <GL/gl.h>
 #include <iostream>
 
-void Clipping::Filler::RemplissageLigne(int x, int y, std::array<int,3> CC,  std::array<int,3> CR){
+void Clipping::Filler::fill(int x, int y, std::array<int, 3> CC, std::array<int, 3> CR){
     std::stack<std::vector<int>> Pile;
     std::vector<int> temp {x,y};
     Pile.push(temp);

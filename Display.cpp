@@ -38,7 +38,7 @@ void Clipping::Display::render() {
         std::array<int, 3> intFillColor = {static_cast<int>(fillColor[0] * 255),
                                            static_cast<int>(fillColor[1] * 255),
                                            static_cast<int>(fillColor[2] * 255)};
-        Clipping::Filler::RemplissageLigne(x, y, {255, 0, 0}, intFillColor);
+        Clipping::Filler::fill(x, y, {255, 0, 0}, intFillColor);
     }
 
     for(const Clipping::Polygon &window : Clipping::scene.windows) {
