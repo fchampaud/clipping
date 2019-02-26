@@ -16,20 +16,19 @@
 #include "Filler.h"
 #include "Display.h"
 
-void draw_polygon(int button, int state, int x, int y)
+void handle_mouse_button(int button, int state, int x, int y)
 {
     Clipping::scene.currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
 
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-    {
-        if ( Clipping::scene.closed )
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        if ( Clipping::scene.closed ) {
             Clipping::scene.pts.clear(); // restart if last action was close
+        }
         Clipping::scene.closed = false;
         if (Clipping::scene.mode == 2) {
             std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
             Clipping::scene.fillStartPoints.push_back({x, Clipping::vp_height - y});
-        }
-        else {
+        } else {
             Clipping::scene.pts.push_back(Clipping::scene.currentPt);
         }
     }
@@ -73,7 +72,7 @@ int main(int argc, char** argv)
 
     glutDisplayFunc(Clipping::Display::render);
     glutPassiveMotionFunc(mouse_move);
-    glutMouseFunc(draw_polygon);
+    glutMouseFunc(handle_mouse_button);
 
     glMatrixMode( GL_PROJECTION );
     glOrtho(0.0f, (float)Clipping::vp_width, 0.0f, (float)Clipping::vp_height,
