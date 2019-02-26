@@ -11,6 +11,13 @@
 #include <GL/gl.h>
 #include <iostream>
 
+/**
+ * Fills starting at point {x;y}, using passed border color and fill color
+ * @param x The x point at which filling will start
+ * @param y The y point at which filling will start
+ * @param CC The R,G,B components of the border color
+ * @param CR The R,G,B components of the fill color
+ */
 void Clipping::Filler::fill(int x, int y, std::array<int, 3> CC, std::array<int, 3> CR){
     std::stack<std::vector<int>> Pile;
     std::vector<int> temp {x,y};
@@ -79,6 +86,12 @@ void Clipping::Filler::fill(int x, int y, std::array<int, 3> CC, std::array<int,
     }
 }
 
+/**
+ * Returns the pixel color at passed position
+ * @param x The x position of the pixel to retrieve
+ * @param y The y position of the pixel to retrieve
+ * @return An array containing the R,G,B components of the pixel's color
+ */
 std::array<int,3> Clipping::Filler::getPixelColor(int x,int y){
 
     unsigned char pixel[4];
@@ -91,6 +104,13 @@ std::array<int,3> Clipping::Filler::getPixelColor(int x,int y){
     return {(int)pixel[0],(int)pixel[1],(int)pixel[2]};
 }
 
+/**
+ * Draws a line between two points on the same y position
+ * @param x1 The first x position, where drawing starts
+ * @param y1 The second x position, where drawing ends
+ * @param x2 The y position at which drawing takes place
+ * @param C The R,G,B components of the color to use for drawing
+ */
 void Clipping::Filler::drawLine(int x1,int y1,int x2 ,std::array<int,3> C){
     glBegin(GL_POINTS);
     glColor3f(C[0],C[1],C[2]);

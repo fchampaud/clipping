@@ -16,6 +16,14 @@
 #include "Filler.h"
 #include "Display.h"
 
+
+/**
+ * Handles mouse button events
+ * @param button The mouse button that fired an event
+ * @param state The state of the mouse button
+ * @param x The x position of the cursor
+ * @param y The y position of the cursor
+ */
 void handle_mouse_button(int button, int state, int x, int y)
 {
     Clipping::scene.currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
@@ -46,6 +54,11 @@ void handle_mouse_button(int button, int state, int x, int y)
     }
 }
 
+/**
+ * Handles mouse movement
+ * @param x The x position of the cursor
+ * @param y The y position of the cursor
+ */
 void mouse_move(int x, int y)
 {
     Clipping::scene.currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
