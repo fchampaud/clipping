@@ -63,7 +63,7 @@ void mouse_move(int x, int y)
 {
     Clipping::scene.currentPt = std::array<int, 2>{x, Clipping::vp_height-y};
     auto color = Clipping::Filler::getPixelColor(x, Clipping::vp_height - y);
-    if (Clipping::scene.mode != 3) {
+    if (Clipping::scene.mode != 3 && !Clipping::scene.pts.empty()) {
         glutPostRedisplay();
     }
 }
