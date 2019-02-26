@@ -23,10 +23,10 @@ void handle_mouse_button(int button, int state, int x, int y)
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         if ( Clipping::scene.closed ) {
             Clipping::scene.pts.clear(); // restart if last action was close
+            Clipping::scene.closed = false;
         }
-        Clipping::scene.closed = false;
+
         if (Clipping::scene.mode == 2) {
-            std::cout << "Adding point " << x << ';' << y << " to fill start points" << std::endl;
             Clipping::scene.fillStartPoints.push_back({x, Clipping::vp_height - y});
             glutPostRedisplay();
         } else {
